@@ -38,4 +38,14 @@ public class PatientController {
         System.out.println(patientid);
         return (List<Patients>) dao.Searchpatients(p.getPatientid());
     }
+    @CrossOrigin(origins = "*")
+    @PostMapping(path="/delete",consumes = "application/json",produces = "application/json")
+    public Map<String,String> delete(@RequestBody Patients p){
+        String id=String.valueOf(p.getId());
+        System.out.println(id);
+        dao.deletePatient(p.getId());
+        HashMap<String,String> map=new HashMap<>();
+        map.put("status","success");
+        return map;
+    }
 }
